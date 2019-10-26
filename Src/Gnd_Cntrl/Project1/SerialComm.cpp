@@ -26,6 +26,17 @@ int comm_status = 0;
 unsigned char sent_seq_num;
 unsigned char rec_seq_num;
 
+//global communication setup process variables
+int setup_msg_counter = 0;
+int setup_msg_timer = 0;
+bool setup_ack = false;
+
+//communication setup global values
+int serial_power = 0;
+int serial_address = 0;
+int serial_channel = 0;
+
+
 //helper function which computes CRC8
 const unsigned char  CRC7_POLY = 0x91;
 unsigned char getCRC(unsigned char message[], unsigned char length)
@@ -81,6 +92,20 @@ unsigned int __stdcall tx_thread(void * data)
 			unsigned char man_cmd = 0;
 			unsigned char special_cmd = 0;
 
+
+			//update setup_msg_counter - TODO need to fix all of this as currently this is going to send a setup message
+			//every 20 msec...
+			if (setup_msg_timer >= 100 && setup_msg_counter <= 2)
+			{
+				setup_msg_counter++;
+			}
+			
+			//check if required to send a setup command
+			if (setup_msg_counter < 2 && !setup_ack)
+			{
+				cmd_data.message_id = 253;
+			}
+
 			//build the message according to the message id
 			switch (cmd_data.message_id)
 			{
@@ -113,6 +138,15 @@ unsigned int __stdcall tx_thread(void * data)
 				msg[5] = getCRC(msg, 4);
 				numbertowrite = 6;
 				break;
+			case 253: //setup command message
+				msg[1] = 6; //message length
+				msg[2] = 253; //message id
+				msg[3] = serial_address;
+				msg[4] = serial_address;
+				msg[5] = serial_channel;
+				msg[6] = serial_power;
+				msg[7] = getCRC(msg, 6);
+				numbertowrite = 8; //TODO - check that at first this message is sent with the correct structure
 			default: //status request message
 				msg[1] = 4;
 				msg[2] = 10;
@@ -152,8 +186,12 @@ unsigned int __stdcall tx_thread(void * data)
 		}
 		ReleaseMutex(rxtxMutex);
 
-		//wait for 20 miliseconds
+		//wait for 20 miliseconds - instead of counter do something else
 		Sleep(20) ;
+		if (setup_msg_counter < 2 && !setup_ack)
+		{
+			setup_msg_timer += 20;
+		}
 		
 	}
 
@@ -161,6 +199,7 @@ unsigned int __stdcall tx_thread(void * data)
 }
 
 //rx thread function
+//TODO - add handling of comm setup message ...
 unsigned int __stdcall rx_thread(void * data)
 {
 	int status = 0;
@@ -356,6 +395,12 @@ SerialComm::SerialComm(int _port, int _freq, int _address, int _pow)
 	//set the communication port value
 	port = _port;
 
+	//set the addres value
+	address = _address;
+
+	//set the transmission power
+	power = _pow;
+
 	//set the global tx rx run thread variables
 	run_rx = false;
 	run_tx = false;
@@ -412,6 +457,11 @@ bool SerialComm::startComm()
 	comm_status = 100;
 	sent_seq_num = 0;
 	rec_seq_num = 0;
+
+	//update global comm setup values
+	serial_address = address;
+	serial_power = power;
+	serial_channel = freq;
 
 	//status of handles
 	BOOL status;
@@ -558,6 +608,11 @@ void SerialComm::endComm()
 	rec_seq_num = 0;
 	comm_status = 0;
 	comm_on_off = false;
+
+	//reset global communication setup process variables
+	setup_msg_counter = 0;
+	setup_msg_timer = 0;
+	setup_ack = false;
 }
 
 /*Function sets the data to be sent to the communication system, this includes the following parameters:

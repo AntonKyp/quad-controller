@@ -44,7 +44,6 @@ typedef struct serial_cmd {
 } SERIAL_CMD;
 
 
-
 //class serial comm manages the serial communication of the ground controller application
 //with a serial device which sends and receives commands from the main GUI
 class SerialComm
@@ -153,9 +152,6 @@ private:
 
 	//communication system power settings
 	int power;
-
-	//communication state
-	comm_state sts; //TODO - Is this useful or should or should I add a global?
 
 };
 
