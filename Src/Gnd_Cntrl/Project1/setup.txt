@@ -1,0 +1,65 @@
+#forward key
+M
+
+#backward key
+S
+
+#left key
+A
+
+#right key
+D
+
+#turn right key
+E
+
+#turn left key
+Q
+
+#up key
+UP
+
+#down key
+DOWN
+
+#throttle up key
+RIGHT
+
+#throttle down key
+LEFT
+
+#on/off key
+O
+
+#auto land key
+1
+
+#get cel pos key
+2
+
+#find runway key
+3
+
+#video on/off key
+4
+
+#keyboard sensitivity
+52
+
+#log flight data - on/off
+YES
+
+#comm frequency
+123
+
+#comm on off key
+5
+
+#comm port
+4
+
+#comm address
+1
+
+#comm power
+3
