@@ -21,7 +21,6 @@
 #include "SerialComm.h"
 
 //TDL -	
-//		1. Setup screen functionality - Complete
 //		1. Develop the communication system:
 //			1.1 Add comm system init capability
 //		3. Write the init section of the sepcification of the quad ground controller
@@ -85,19 +84,18 @@ int main()
 		setup_key_vals.turn_left_key, setup_key_vals.turn_right_key, setup_key_vals.fwd_key, setup_key_vals.back_key,
 		setup_key_vals.key_sens, setup_key_vals.throt_up_key, setup_key_vals.throt_down_key, setup_key_vals.on_off_key,
 		setup_key_vals.address, setup_key_vals.channel, setup_key_vals.power, setup_key_vals.comm_port, setup_key_vals.log); //set setupMenu values
-	//TODO - there is a bug here - throt up, throt down and on_off_key...
 
 	AutoMenu auto_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init auto menu
 	ManMenu man_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init manual menu
-	man_menu.setVidOnOff(false); //TODO - to be removed
+	man_menu.setVidOnOff(false); //TODO - Update to read video input from external camera
 	AboutMenu about_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init about menu
 	about_menu.setDev("Anton Kipiatkov", 15);
-	about_menu.setSoftwareVersion("V0.0", 4);
+	about_menu.setSoftwareVersion("V1.0", 4);
 	ExitMenu exit_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); 	//init exit menu
 
 	//init serial communication
-	//TODO - Use the setup values here instead of fixed values...
-	SerialComm serial_comm(3, 0, 0, 0);
+	SerialComm serial_comm(setup_menu.get_comm_port(), setup_menu.get_channel(),
+		setup_menu.get_address(), setup_menu.get_comm_power());
 	bool comm_on_off_status = false; //communication system on/off status, by deafult off
 
 	//init quad controler states
@@ -201,6 +199,9 @@ int main()
 		//activate deactivate communication
 		if (!comm_on_off_status && comm_on_off) // turn on the communication
 		{
+			//reset all communication parameters
+			serial_comm.setCommParams(setup_menu.get_channel(), setup_menu.get_comm_port(),
+				setup_menu.get_address(), setup_menu.get_comm_power());
 			serial_comm.startComm();
 			comm_on_off_status = true;
 		}
