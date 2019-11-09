@@ -28,7 +28,6 @@ unsigned char rec_seq_num;
 
 //global communication setup process variables
 int setup_msg_counter = 0;
-int setup_msg_timer = 0;
 bool setup_ack = false;
 
 //communication setup global values
@@ -92,20 +91,17 @@ unsigned int __stdcall tx_thread(void * data)
 			unsigned char man_cmd = 0;
 			unsigned char special_cmd = 0;
 
-
-			//update setup_msg_counter - TODO need to fix all of this as currently this is going to send a setup message
-			//every 20 msec...
-			if (setup_msg_timer >= 100 && setup_msg_counter <= 2)
-			{
-				setup_msg_counter++;
-			}
-			
 			//check if required to send a setup command
 			if (setup_msg_counter < 2 && !setup_ack)
 			{
 				cmd_data.message_id = 253;
 			}
-
+			//two retries to send the setup message
+			if (setup_msg_counter < 2 && !setup_ack)
+			{
+				setup_msg_counter++;
+			}
+			
 			//build the message according to the message id
 			switch (cmd_data.message_id)
 			{
@@ -146,7 +142,8 @@ unsigned int __stdcall tx_thread(void * data)
 				msg[5] = serial_channel;
 				msg[6] = serial_power;
 				msg[7] = getCRC(msg, 6);
-				numbertowrite = 8; //TODO - check that at first this message is sent with the correct structure
+				numbertowrite = 8;
+				break;
 			default: //status request message
 				msg[1] = 4;
 				msg[2] = 10;
@@ -176,7 +173,7 @@ unsigned int __stdcall tx_thread(void * data)
 			}
 
 			CloseHandle(write_ov.hEvent);
-			sent_counter++;
+			if (setup_ack) sent_counter++; //count messages only after the setup process was ok
 			if (sent_counter >= 50)
 			{
 				sent_counter = 2;
@@ -186,12 +183,13 @@ unsigned int __stdcall tx_thread(void * data)
 		}
 		ReleaseMutex(rxtxMutex);
 
-		//wait for 20 miliseconds - instead of counter do something else
+		//wait 20 miliseconds. For setup messages wait 100 miliseconds.
 		Sleep(20) ;
 		if (setup_msg_counter < 2 && !setup_ack)
 		{
-			setup_msg_timer += 20;
+			Sleep(100);
 		}
+		else Sleep(20);
 		
 	}
 
@@ -611,7 +609,6 @@ void SerialComm::endComm()
 
 	//reset global communication setup process variables
 	setup_msg_counter = 0;
-	setup_msg_timer = 0;
 	setup_ack = false;
 }
 

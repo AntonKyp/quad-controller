@@ -1,14 +1,14 @@
 #forward key
-M
+W
 
 #backward key
 S
 
 #left key
-A
+D
 
 #right key
-D
+A
 
 #turn right key
 E
@@ -47,7 +47,7 @@ O
 52
 
 #log flight data - on/off
-YES
+NO
 
 #comm frequency
 123

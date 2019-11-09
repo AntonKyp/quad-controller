@@ -87,7 +87,7 @@ int main()
 
 	AutoMenu auto_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init auto menu
 	ManMenu man_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init manual menu
-	man_menu.setVidOnOff(true); //TODO - Update to read video input from external camera
+	man_menu.setVidOnOff(false); //TODO - Update to read video input from external camera
 	AboutMenu about_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init about menu
 	about_menu.setDev("Anton Kipiatkov", 15);
 	about_menu.setSoftwareVersion("V1.0", 4);
