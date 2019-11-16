@@ -166,6 +166,7 @@ unsigned int __stdcall tx_thread(void * data)
 			memset(&write_ov, 0, sizeof(write_ov));
 			write_ov.hEvent = CreateEvent(0, true, 0, 0);
 
+			std::cout << "Sending a message\n";
 			status = WriteFile(hCommPort, msg, numbertowrite, &numberwritten, &write_ov);
 			if (status == 0)
 			{
@@ -184,12 +185,11 @@ unsigned int __stdcall tx_thread(void * data)
 		ReleaseMutex(rxtxMutex);
 
 		//wait 20 miliseconds. For setup messages wait 100 miliseconds.
-		Sleep(20) ;
 		if (setup_msg_counter < 2 && !setup_ack)
 		{
-			Sleep(100);
+			Sleep(5000); //TODO - Fix times
 		}
-		else Sleep(20);
+		else Sleep(20); // TODO - fix times
 		
 	}
 
@@ -254,7 +254,7 @@ unsigned int __stdcall rx_thread(void * data)
 							i++;
 							continue;
 						}
-						else if (i == 1 && (tempChar < 0 || tempChar > 25)) //bad message header
+						else if (i == 1 && (tempChar < 0 || tempChar > 25)) //bad message length
 						{
 							i = 0; //go back to waiting fo header
 							message_length = 0;
@@ -289,29 +289,48 @@ unsigned int __stdcall rx_thread(void * data)
 
 			if (message_read) //if the entire message was read copy the values
 			{
+				//crc check var
+				unsigned char crc_test = 0;
 				
-				//copy the values in the rx_buffer
+				//copy message header values
 				begin_trans = rx_buffer[0];
 				msg_len = rx_buffer[1];
 				msg_id = rx_buffer[2];
-				rec_seq_num = rx_buffer[3];
-				batt_sts = rx_buffer[4];
-				raw_vel_up = (short int)(rx_buffer[5] | rx_buffer[6] << 8);
-				raw_vel_left = (short int)(rx_buffer[7] | rx_buffer[8] << 8);
-				raw_vel_fwd = (short int)(rx_buffer[9] | rx_buffer[10] << 8) ;
-				raw_heading = (short int)(rx_buffer[11] | rx_buffer[12] << 8);
-				raw_altitude = (short int)(rx_buffer[13] | rx_buffer[14] << 8);
-				raw_pitch = (short int)(rx_buffer[15] | rx_buffer[16] << 8);
-				raw_roll = (short int)(rx_buffer[17] | rx_buffer[18] << 8);
-				eng1_sts = rx_buffer[19];
-				eng2_sts = rx_buffer[20];
-				eng3_sts = rx_buffer[21];
-				eng4_sts = rx_buffer[22];
-				fail_sts = rx_buffer[23];
-				crc = rx_buffer[24];
 
-				//test header, msg_id and CRC
-				unsigned char crc_test = getCRC(rx_buffer, 23);
+
+				
+				//handle setup ack message values
+				if (msg_id == 254)
+				{
+					crc = rx_buffer[4];
+					if ((getCRC(rx_buffer, 4) == crc) && (rx_buffer[3] == 1)) //if crc and setup status is ok mark it as such
+					{
+						setup_ack = true;
+					}
+				}
+
+				//handle data ack message values
+				if (msg_id == 11)
+				{
+					rec_seq_num = rx_buffer[3];
+					batt_sts = rx_buffer[4];
+					raw_vel_up = (short int)(rx_buffer[5] | rx_buffer[6] << 8);
+					raw_vel_left = (short int)(rx_buffer[7] | rx_buffer[8] << 8);
+					raw_vel_fwd = (short int)(rx_buffer[9] | rx_buffer[10] << 8);
+					raw_heading = (short int)(rx_buffer[11] | rx_buffer[12] << 8);
+					raw_altitude = (short int)(rx_buffer[13] | rx_buffer[14] << 8);
+					raw_pitch = (short int)(rx_buffer[15] | rx_buffer[16] << 8);
+					raw_roll = (short int)(rx_buffer[17] | rx_buffer[18] << 8);
+					eng1_sts = rx_buffer[19];
+					eng2_sts = rx_buffer[20];
+					eng3_sts = rx_buffer[21];
+					eng4_sts = rx_buffer[22];
+					fail_sts = rx_buffer[23];
+					crc = rx_buffer[24];
+
+					//test header, msg_id and CRC
+					crc_test = getCRC(rx_buffer, 23);
+				}
 
 				//reset the rx_buffer once data is read
 				memset(rx_buffer, 0, sizeof (rx_buffer));
@@ -463,21 +482,22 @@ bool SerialComm::startComm()
 
 	//status of handles
 	BOOL status;
+	std::cout << "port value is: " << port << std::endl;
 
 	//open a communication port and set all of its properties
 	TCHAR * tchar_comm_port;
 	switch (port)
 	{
-	case 0:
+	case 1:
 		tchar_comm_port = _T("COM1");
 		break;
-	case 1:
+	case 2:
 		tchar_comm_port = _T("COM2");
 		break;
-	case 2:
+	case 3:
 		tchar_comm_port = _T("COM3");
 		break;
-	case 3:
+	case 4:
 		tchar_comm_port = _T("COM4");
 		break;
 	default:

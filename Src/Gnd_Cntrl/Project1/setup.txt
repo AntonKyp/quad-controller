@@ -44,7 +44,7 @@ O
 4
 
 #keyboard sensitivity
-52
+57
 
 #log flight data - on/off
 NO
@@ -56,7 +56,7 @@ NO
 5
 
 #comm port
-4
+3
 
 #comm address
 1
