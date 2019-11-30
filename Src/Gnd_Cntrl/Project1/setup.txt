@@ -44,7 +44,7 @@ O
 4
 
 #keyboard sensitivity
-57
+42
 
 #log flight data - on/off
 NO

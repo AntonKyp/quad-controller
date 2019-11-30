@@ -20,7 +20,7 @@ bool run_tx, run_rx;
 bool comm_on_off = false;
 
 //global communication status variables
-int sent_counter = 2;
+int sent_counter = 1;
 int rec_counter = 1;
 int comm_status = 0;
 unsigned char sent_seq_num;
@@ -96,11 +96,6 @@ unsigned int __stdcall tx_thread(void * data)
 			{
 				cmd_data.message_id = 253;
 			}
-			//two retries to send the setup message
-			if (setup_msg_counter < 2 && !setup_ack)
-			{
-				setup_msg_counter++;
-			}
 			
 			//build the message according to the message id
 			switch (cmd_data.message_id)
@@ -161,24 +156,43 @@ unsigned int __stdcall tx_thread(void * data)
 		waitResult = WaitForSingleObject(rxtxMutex, INFINITE); //lock tx operation
 		if (waitResult == WAIT_OBJECT_0)
 		{
-			//overlapped I/O event handler
-			OVERLAPPED write_ov;
-			memset(&write_ov, 0, sizeof(write_ov));
-			write_ov.hEvent = CreateEvent(0, true, 0, 0);
 
-			std::cout << "Sending a message\n";
-			status = WriteFile(hCommPort, msg, numbertowrite, &numberwritten, &write_ov);
-			if (status == 0)
+			if (setup_ack || setup_msg_counter < 2) //send messages only if setup was not done yet or it was completed successfully
 			{
-				WaitForSingleObject(write_ov.hEvent, INFINITE);
+				//overlapped I/O event handler
+				OVERLAPPED write_ov;
+				memset(&write_ov, 0, sizeof(write_ov));
+				write_ov.hEvent = CreateEvent(0, true, 0, 0);
+
+
+				status = WriteFile(hCommPort, msg, numbertowrite, &numberwritten, &write_ov);
+
+
+				if (status == 0)
+				{
+					WaitForSingleObject(write_ov.hEvent, INFINITE);
+				}
+
+				CloseHandle(write_ov.hEvent);
+
 			}
 
-			CloseHandle(write_ov.hEvent);
-			if (setup_ack) sent_counter++; //count messages only after the setup process was ok
-			if (sent_counter >= 50)
+			//two retries to send the setup message
+			if (setup_msg_counter < 2 && !setup_ack)
 			{
-				sent_counter = 2;
-				rec_counter = 1;
+				setup_msg_counter++;
+			}
+
+			if (setup_ack)
+			{
+				sent_counter++; //count messages only after the setup process was ok
+				if (sent_counter >= 50)
+				{
+					comm_status = (int)((rec_counter / (double)sent_counter) * 100); //update comm_status every 50 readings
+					sent_counter = 1; //reset counters
+					rec_counter = 1;
+				}
+				
 			}
 			
 		}
@@ -187,9 +201,9 @@ unsigned int __stdcall tx_thread(void * data)
 		//wait 20 miliseconds. For setup messages wait 100 miliseconds.
 		if (setup_msg_counter < 2 && !setup_ack)
 		{
-			Sleep(5000); //TODO - Fix times
+			Sleep(100); 
 		}
-		else Sleep(20); // TODO - fix times
+		else Sleep(20); 
 		
 	}
 
@@ -197,7 +211,6 @@ unsigned int __stdcall tx_thread(void * data)
 }
 
 //rx thread function
-//TODO - add handling of comm setup message ...
 unsigned int __stdcall rx_thread(void * data)
 {
 	int status = 0;
@@ -297,10 +310,8 @@ unsigned int __stdcall rx_thread(void * data)
 				msg_len = rx_buffer[1];
 				msg_id = rx_buffer[2];
 
-
-				
 				//handle setup ack message values
-				if (msg_id == 254)
+				if (msg_id == 254 && !setup_ack)
 				{
 					crc = rx_buffer[4];
 					if ((getCRC(rx_buffer, 4) == crc) && (rx_buffer[3] == 1)) //if crc and setup status is ok mark it as such
@@ -330,6 +341,7 @@ unsigned int __stdcall rx_thread(void * data)
 
 					//test header, msg_id and CRC
 					crc_test = getCRC(rx_buffer, 23);
+
 				}
 
 				//reset the rx_buffer once data is read
@@ -362,8 +374,7 @@ unsigned int __stdcall rx_thread(void * data)
 				}
 				else msg_ok = false;
 
-
-				if (message_read && msg_ok)
+				if (message_read && msg_ok) 
 				{
 					waitResult = WaitForSingleObject(rxtxMutex, INFINITE);
 					if (waitResult == WAIT_OBJECT_0)
@@ -372,7 +383,6 @@ unsigned int __stdcall rx_thread(void * data)
 						{
 							rec_counter++;
 						}
-						comm_status = (int)((rec_counter / (double)sent_counter) * 100);
 					}
 					ReleaseMutex(rxtxMutex);
 				}
@@ -424,7 +434,7 @@ SerialComm::SerialComm(int _port, int _freq, int _address, int _pow)
 
 	//set the communication status counters
 	unsigned int rec_counter = 1;
-	unsigned int sent_counter = 2;
+	unsigned int sent_counter = 1;
 	unsigned char sent_seq_num = 0;
 	unsigned char rec_seq_num = 0;
 
@@ -469,7 +479,7 @@ bool SerialComm::startComm()
 	cmd_data = { 0 };
 
 	//communication status variables
-	sent_counter = 2;
+	sent_counter = 1;
 	rec_counter = 1;
 	comm_status = 100;
 	sent_seq_num = 0;
@@ -482,7 +492,6 @@ bool SerialComm::startComm()
 
 	//status of handles
 	BOOL status;
-	std::cout << "port value is: " << port << std::endl;
 
 	//open a communication port and set all of its properties
 	TCHAR * tchar_comm_port;
@@ -745,7 +754,7 @@ void SerialComm::getData(int &batt_sts, double &vel_up, double &vel_left, double
 }
 
 /*Function returns the status of the communication link with the quad copter
-The returned value is the percentage of messages acknowledged of the last 20 messages sent
+The returned value is the percentage of messages acknowledged of the last 50 messages sent
 */
 int SerialComm::getCommstatus()
 {
@@ -758,8 +767,13 @@ int SerialComm::getCommstatus()
 		waitResult = WaitForSingleObject(rxtxMutex, INFINITE);
 		if (waitResult == WAIT_OBJECT_0)
 		{
-			if (comm_status == 0) { return_status = 0; }
-			else { return_status = (comm_status / 5) * 5 + 5; }
+			if (comm_status == 0 || !setup_ack) { return_status = 0; }
+			else 
+			{ 
+				//add 25% due to arduino and usb port shittiness (a lot of CRC errors :( )
+				return_status = (comm_status / 5) * 5 + 25;
+				if (return_status > 100) return_status = 100;
+			}
 		}
 		ReleaseMutex(rxtxMutex);
 
