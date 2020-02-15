@@ -136,7 +136,7 @@ unsigned int __stdcall tx_thread(void * data)
 				msg[4] = serial_address;
 				msg[5] = serial_channel;
 				msg[6] = serial_power;
-				msg[7] = getCRC(msg, 6);
+				msg[7] = getCRC(msg, 7);
 				numbertowrite = 8;
 				break;
 			default: //status request message
@@ -164,13 +164,16 @@ unsigned int __stdcall tx_thread(void * data)
 				memset(&write_ov, 0, sizeof(write_ov));
 				write_ov.hEvent = CreateEvent(0, true, 0, 0);
 
-
 				status = WriteFile(hCommPort, msg, numbertowrite, &numberwritten, &write_ov);
-
 
 				if (status == 0)
 				{
-					WaitForSingleObject(write_ov.hEvent, INFINITE);
+					//WaitForSingleObject(write_ov.hEvent, INFINITE);
+					int res = 0;
+					res = WaitForSingleObject(write_ov.hEvent, 100); //TX timeout is 100 miliseconds
+					//TODO - need to add handling of loss of comm port while the program is running
+					//currently this may cras the application
+
 				}
 
 				CloseHandle(write_ov.hEvent);
@@ -198,12 +201,12 @@ unsigned int __stdcall tx_thread(void * data)
 		}
 		ReleaseMutex(rxtxMutex);
 
-		//wait 20 miliseconds. For setup messages wait 100 miliseconds.
+		//wait 20 miliseconds. For setup messages wait 500 miliseconds.
 		if (setup_msg_counter < 2 && !setup_ack)
 		{
-			Sleep(100); 
+			Sleep(500); 
 		}
-		else Sleep(20); 
+		else Sleep(50); 
 		
 	}
 
@@ -323,6 +326,7 @@ unsigned int __stdcall rx_thread(void * data)
 				//handle data ack message values
 				if (msg_id == 11)
 				{
+
 					rec_seq_num = rx_buffer[3];
 					batt_sts = rx_buffer[4];
 					raw_vel_up = (short int)(rx_buffer[5] | rx_buffer[6] << 8);
@@ -639,6 +643,7 @@ void SerialComm::endComm()
 	//reset global communication setup process variables
 	setup_msg_counter = 0;
 	setup_ack = false;
+
 }
 
 /*Function sets the data to be sent to the communication system, this includes the following parameters:
@@ -756,7 +761,7 @@ void SerialComm::getData(int &batt_sts, double &vel_up, double &vel_left, double
 /*Function returns the status of the communication link with the quad copter
 The returned value is the percentage of messages acknowledged of the last 50 messages sent
 */
-int SerialComm::getCommstatus()
+int SerialComm::getCommstatus() //TODO - check where the function hangs here...?
 {
 	int return_status = 0;
 
@@ -767,10 +772,10 @@ int SerialComm::getCommstatus()
 		waitResult = WaitForSingleObject(rxtxMutex, INFINITE);
 		if (waitResult == WAIT_OBJECT_0)
 		{
-			if (comm_status == 0 || !setup_ack) { return_status = 0; }
+			if (comm_status < 15 || !setup_ack) { return_status = 0; }
 			else 
 			{ 
-				//add 25% due to arduino and usb port shittiness (a lot of CRC errors :( )
+				//add 25% due to arduino and usb port faults (a lot of CRC errors :( )
 				return_status = (comm_status / 5) * 5 + 25;
 				if (return_status > 100) return_status = 100;
 			}

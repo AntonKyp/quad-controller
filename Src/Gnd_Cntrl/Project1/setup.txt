@@ -50,7 +50,7 @@ O
 NO
 
 #comm frequency
-123
+0
 
 #comm on off key
 5
