@@ -290,7 +290,7 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 
 	//velocity forward data
 	float vel_fwd_lbl_pos[2] = { vel_left_val_pos[0], vel_left_val_pos[1] - 35.0f };
-	velFwdLbl = new Label(12, "VelLeft[m/s]", 12, green_col, 4 * font_h, font_h, scr_width, scr_height, vel_fwd_lbl_pos, false,
+	velFwdLbl = new Label(12, "VelFwd[m/s]", 12, green_col, 4 * font_h, font_h, scr_width, scr_height, vel_fwd_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 	float vel_fwd_val_pos[2] = { vel_fwd_lbl_pos[0], vel_fwd_lbl_pos[1] - 35.0f };
 	velFwdVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, vel_fwd_val_pos, true,

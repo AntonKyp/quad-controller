@@ -16,20 +16,16 @@
 #include "AboutMenu.h"
 #include "ManMenu.h"
 #include "ExitMenu.h"
+#include "LoadScr.h"
 
 //Serial communication handling
 #include "SerialComm.h"
 
-//TDL -	
-//		1. Develop the communication system:
-//			1.1 Add comm system init capability
-//		3. Write the init section of the sepcification of the quad ground controller
-//		4. Write the perform functions section
-//			This section reads the status of the screen which is open and reacts accordingly.
-//			right now need to implement just for manual control - with its simple functions
-//			next step is to implement the manual menu automated functions...
-//		5. Control frame rate and responsiveness of the program
-//		6. Make program run on Nvidia GPU and not the intel GPU...
+//TODO - 	
+// 1. Handle more than one resolution (1920 x 1080) - mouse click position to not be affected by resolution (first)
+// 2. Handle loss of comm port in serialComm class
+// 3. Limit GUI frame rate
+// 4. Add special functions - This to be done after the quad is implemented...
 
 
 int main()
@@ -41,7 +37,7 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	//glfwGetPrimaryMonitor() - Check how to fix windows security from blocking full screen
+	//glfwGetPrimaryMonitor() - Check how to fix windows security from blocking full screen - TODO
 
 	//create new glfw window
 	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Quad Controller", NULL, NULL);
@@ -61,12 +57,14 @@ int main()
 	get_controls(&setup_key_vals);
 
 
+
 	//Setup GLFW functions and objects
 	glfwMakeContextCurrent(window); 	//set window as context 
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback); 	//set resize callback function
 	glfwSetCursorPosCallback(window, cursor_position_callback); //set cursor position callback function
 	glfwSetMouseButtonCallback(window, mouse_button_callback); //set mouse button callback function
 	glfwSetKeyCallback(window, key_callback); //set keyboard callback function
+	
 
 	//init glad - openGL function pointers
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -74,6 +72,12 @@ int main()
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		return -1;
 	}
+	//Init loading screen
+	LoadScr load_menu((float)SCR_WIDTH, float(SCR_HEIGHT));
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+	load_menu.drawLoad();
+	glfwSwapBuffers(window);
 
 	//Init window items
 	StatusBar stsBr(0, 0, 0, 0, (float)SCR_WIDTH, (float)SCR_HEIGHT); //init status bar

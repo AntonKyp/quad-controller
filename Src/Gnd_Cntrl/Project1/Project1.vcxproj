@@ -192,6 +192,7 @@
     <ClCompile Include="glfw_callback_func.cpp" />
     <ClCompile Include="HorizontalScroller.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="LoadScr.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ManMenu.cpp" />
     <ClCompile Include="PerInd.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="glfw_callback_func.h" />
     <ClInclude Include="HorizontalScroller.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="LoadScr.h" />
     <ClInclude Include="ManMenu.h" />
     <ClInclude Include="PerInd.h" />
     <ClInclude Include="Scroller.h" />
