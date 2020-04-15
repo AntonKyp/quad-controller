@@ -1,0 +1,50 @@
+﻿Build started 4/15/2020 1:06:35 PM.
+     1>Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt AboutMenu.cpp AttitudeInd.cpp AutoMenu.cpp Button.cpp ExitMenu.cpp Frame.cpp glfw_callback_func.cpp HorizontalScroller.cpp Label.cpp LoadScr.cpp main.cpp ManMenu.cpp PerInd.cpp Scroller.cpp SerialComm.cpp SetupMenu.cpp Shader.cpp StatusBar.cpp stb_image.cpp ToolBar.cpp VideoFrame.cpp
+         AboutMenu.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         AttitudeInd.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         AutoMenu.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         Button.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         ExitMenu.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         Frame.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         glfw_callback_func.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         HorizontalScroller.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         Label.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         LoadScr.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         main.cpp
+     1>main.cpp(6): fatal error C1083: Cannot open include file: 'glad\glad.h': No such file or directory
+         ManMenu.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         PerInd.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         Scroller.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         SerialComm.cpp
+         SetupMenu.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         Shader.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         StatusBar.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         stb_image.cpp
+         ToolBar.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+         Compiling...
+         VideoFrame.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\Shader.h(4): fatal error C1083: Cannot open include file: 'glad/glad.h': No such file or directory
+     1>Done Building Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:02.79
