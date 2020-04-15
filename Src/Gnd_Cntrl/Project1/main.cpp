@@ -27,8 +27,11 @@
 // 3. Limit GUI frame rate
 // 4. Add special functions - This to be done after the quad is implemented...
 
-
-int main()
+//debug - replace WinMain with "int main()"
+int _stdcall WinMain(struct HINSTANCE__ *hInstance,
+struct HINSTANCE__ *hPrevInstance,
+	char               *lpszCmdLine,
+	int                 nCmdShow)
 {
 	//init glfw
 	glfwInit();

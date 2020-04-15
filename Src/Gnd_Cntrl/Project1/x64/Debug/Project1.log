@@ -1,25 +1,48 @@
-﻿Build started 1/24/2018 9:39:55 PM.
-     1>Project "C:\Anton\Projects\Quad Build\Ground Controller\Src\Web_cam_test\Project1\Project1.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/15/2020 1:09:36 PM.
+     1>Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Anton\Projects\Quad Build\Ground Controller\Src\Web_cam_test\x64\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Anton\Projects\Libs\Libs opengl32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Anton\Projects\Quad Build\Ground Controller\Src\Web_cam_test\x64\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Anton\Projects\Quad Build\Ground Controller\Src\Web_cam_test\x64\Debug\Project1.lib" /MACHINE:X64 x64\Debug\glad.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\x64\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Anton\Projects\Libs\Libs opengl32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\x64\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\x64\Debug\Project1.lib" /MACHINE:X64 x64\Debug\AboutMenu.obj
+         x64\Debug\AttitudeInd.obj
+         x64\Debug\AutoMenu.obj
+         x64\Debug\Button.obj
+         x64\Debug\ExitMenu.obj
+         x64\Debug\Frame.obj
+         x64\Debug\glad.obj
+         x64\Debug\glfw_callback_func.obj
+         x64\Debug\HorizontalScroller.obj
+         x64\Debug\Label.obj
+         x64\Debug\LoadScr.obj
          x64\Debug\main.obj
+         x64\Debug\ManMenu.obj
+         x64\Debug\PerInd.obj
+         x64\Debug\Scroller.obj
+         x64\Debug\SerialComm.obj
+         x64\Debug\SetupMenu.obj
          x64\Debug\Shader.obj
+         x64\Debug\StatusBar.obj
          x64\Debug\stb_image.obj
+         x64\Debug\ToolBar.obj
+         x64\Debug\VideoFrame.obj
      1>main.obj : error LNK2019: unresolved external symbol glfwInit referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function main
-     1>main.obj : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function "void __cdecl processInput(struct GLFWwindow *)" (?processInput@@YAXPEAUGLFWwindow@@@Z)
+     1>main.obj : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwSetFramebufferSizeCallback referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function main
-     1>main.obj : error LNK2019: unresolved external symbol glfwGetKey referenced in function "void __cdecl processInput(struct GLFWwindow *)" (?processInput@@YAXPEAUGLFWwindow@@@Z)
+     1>main.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function main
+     1>main.obj : error LNK2019: unresolved external symbol glfwSetMouseButtonCallback referenced in function main
+     1>main.obj : error LNK2019: unresolved external symbol glfwSetCursorPosCallback referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function main
      1>main.obj : error LNK2019: unresolved external symbol glfwGetProcAddress referenced in function main
-     1>C:\Anton\Projects\Quad Build\Ground Controller\Src\Web_cam_test\x64\Debug\Project1.exe : fatal error LNK1120: 12 unresolved externals
-     1>Done Building Project "C:\Anton\Projects\Quad Build\Ground Controller\Src\Web_cam_test\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
+     1>VideoFrame.obj : error LNK2019: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z) referenced in function "public: __cdecl cv::Mat::~Mat(void)" (??1Mat@cv@@QEAA@XZ)
+     1>VideoFrame.obj : error LNK2019: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ) referenced in function "public: void __cdecl cv::Mat::release(void)" (?release@Mat@cv@@QEAAXXZ)
+     1>VideoFrame.obj : error LNK2019: unresolved external symbol "public: __cdecl cv::VideoCapture::VideoCapture(int)" (??0VideoCapture@cv@@QEAA@H@Z) referenced in function "public: __cdecl VideoFrame::VideoFrame(float,float,float,float,float *,int,bool,char *)" (??0VideoFrame@@QEAA@MMMMPEAMH_NPEAD@Z)
+     1>C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\x64\Debug\Project1.exe : fatal error LNK1120: 17 unresolved externals
+     1>Done Building Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.23
+Time Elapsed 00:00:00.84
