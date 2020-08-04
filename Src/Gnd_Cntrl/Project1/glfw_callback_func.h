@@ -12,7 +12,7 @@
 
 
 //glfw window definitions
-//TBD - later to be changed to full screen and to 1920x1080
+//TODO - handle several screen resolutions
 const unsigned int SCR_WIDTH = 1600;
 const unsigned int SCR_HEIGHT = 800;
 

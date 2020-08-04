@@ -1,6 +1,7 @@
 //system libraries
 #include <iostream>
 #include <stdlib.h>
+#include "wtypes.h"
 
 //openGL libraries
 #include <glad\glad.h>
@@ -23,16 +24,28 @@
 
 //TODO - 	
 // 1. Handle more than one resolution (1920 x 1080) - mouse click position to not be affected by resolution (first)
-// 2. Handle loss of comm port in serialComm class
-// 3. Limit GUI frame rate
-// 4. Add special functions - This to be done after the quad is implemented...
+// 2. Limit GUI frame rate
+// 3. Add special functions - This to be done after the quad is implemented...
 
 //debug - replace WinMain with "int main()"
-int _stdcall WinMain(struct HINSTANCE__ *hInstance,
+/*int _stdcall WinMain(struct HINSTANCE__ *hInstance,
 struct HINSTANCE__ *hPrevInstance,
 	char               *lpszCmdLine,
-	int                 nCmdShow)
+	int                 nCmdShow)*/
+int main()
 {
+
+	//read window size
+	RECT desktop;
+	const HWND hDesktop = GetDesktopWindow();
+	GetWindowRect(hDesktop, &desktop);
+	int h_size = desktop.right;
+	int w_size = desktop.bottom;
+
+	std::cout << "desktop size is: " << h_size << " and: " << w_size << std::endl;
+	h_size = SCR_HEIGHT;
+	w_size = SCR_WIDTH;
+
 	//init glfw
 	glfwInit();
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
