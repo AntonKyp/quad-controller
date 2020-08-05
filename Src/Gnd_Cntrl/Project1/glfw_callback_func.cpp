@@ -65,6 +65,10 @@ int comm_freq = 108;
 int comm_add = 1;
 int comm_power = 3;
 
+//glfw window definitions
+unsigned int scr_w = 1600;
+unsigned int scr_h = 800;
+
 
 //###############################################################################
 // helper functions
@@ -449,9 +453,9 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
 {
 	//read mouse cursor position with (0,0) in the middle of the screen 
-	//and screen size defined by SCR_WIDTH and SCR_HEIGHT
-	mouse_xpos = xpos - (double)SCR_WIDTH*0.5;
-	mouse_ypos = -(ypos - (double)SCR_HEIGHT*0.5); //reverse mouse y axis
+	//and screen size defined by scr_width and scr_height
+	mouse_xpos = xpos - (double)scr_w*0.5;
+	mouse_ypos = -(ypos - (double)scr_h*0.5); //reverse mouse y axis
 }
 
 //handle keyboard button actions
@@ -1130,5 +1134,13 @@ void get_controls(key_vals * cntrl)
 	cntrl->log = log_data;
 	cntrl->key_sens = key_sens;
 
+}
+
+/*Function recieves the screen height and width and saves the screen size for the mouse control position.
+*/
+void set_screen_size(int _scr_h, int _scr_w)
+{
+	scr_h = _scr_h;
+	scr_w = _scr_w;
 }
 
