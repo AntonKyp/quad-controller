@@ -37,8 +37,11 @@ int main()
 
 	//Get screen resolution
 	SetProcessDPIAware();
-	int scr_width = GetSystemMetrics(SM_CXSCREEN);
-	int  scr_height = GetSystemMetrics(SM_CYSCREEN);
+	int scr_width = (int)(WIDTH_RATIO * GetSystemMetrics(SM_CXSCREEN));
+	int  scr_height = (int)(HEIGHT_RATIO * GetSystemMetrics(SM_CYSCREEN));
+
+	std::cout << scr_width << std::endl;
+	std::cout << scr_height << std::endl;
 
 	set_screen_size(scr_height, scr_width);
 
@@ -105,8 +108,8 @@ int main()
 	ManMenu man_menu((float)scr_width, (float)scr_height); //init manual menu
 	man_menu.setVidOnOff(false); //TODO - Update to read video input from external camera
 	AboutMenu about_menu((float)scr_width, (float)scr_height); //init about menu
-	about_menu.setDev("Anton Kipiatkov", 15);
-	about_menu.setSoftwareVersion("V1.0", 4);
+	about_menu.setDev("Anton Kypiatkov", 15);
+	about_menu.setSoftwareVersion("V1.1", 4);
 	ExitMenu exit_menu((float)scr_width, (float)scr_height); 	//init exit menu
 
 	//init serial communication

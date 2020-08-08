@@ -10,6 +10,9 @@
 /*This header file defines the relevant callback functions for glfw*/
 #include <glfw3.h>
 
+#define WIDTH_RATIO 0.83333
+#define HEIGHT_RATIO 0.74076
+
 //struct for key control values
 typedef struct key_vals {
 	int up_key;

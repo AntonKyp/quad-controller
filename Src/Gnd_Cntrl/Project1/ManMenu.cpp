@@ -264,7 +264,7 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 	//posFrame = new Frame(width / 4.8f, height * 0.6f, scr_width, scr_height, pos_frame_pos, gray_col);
 
 	float vid_pos[2] = { pos_frame_pos[0] + width / 9.6f + 220.0f, pos_frame_pos[1] };
-	vid_frame = new VideoFrame(425.0f, 325.0f, scr_width, scr_height, vid_pos, 0, true, "Img/NO_VID.bmp");
+	vid_frame = new VideoFrame(425.0f, 325.0f, scr_width, scr_height, vid_pos, 1, true, "Img/NO_VID.bmp");
 	//TBD - change video source to 1 - read from external usb video capture device
 
 	//attitude data
