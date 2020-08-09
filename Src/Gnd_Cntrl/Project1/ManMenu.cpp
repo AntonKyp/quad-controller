@@ -217,7 +217,7 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 
 	//define title label
 	float white_col[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	float font_h = 70.0f;
+	float font_h = 0.0875f * scr_height;
 	float title_pos[2] = { pos[0], pos[1] + height*0.5f - font_h*0.5f };
 	titleLbl = new Label(6, "Manual", 6, white_col, 5 * font_h, font_h, scr_width, scr_height, title_pos, false,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
@@ -225,16 +225,16 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 	//position information objects
 	//position data frame
 	float gray_col[4] = { 0.5f, 0.5f, 0.5f, 1.0f };
-	float pos_frame_pos[2] = { 0.0f - width / 2 + width / 8 - 40.0f , 0.0f };
+	float pos_frame_pos[2] = { 0.0f - width / 2 + width / 8 - 0.025f*scr_width , 0.0f };
 	posFrame = new Frame( width/5.5f, height * 0.6f, scr_width, scr_height, pos_frame_pos, gray_col);
 	//position frame label
 	float pos_frm_lbl_pos[4] = { pos_frame_pos[0], pos_frame_pos[1] + width / 4.5f /2.0f };
-	font_h = 30.0f;
+	font_h = 0.0375 * scr_height;
 	posFrameLbl = new Label(15, "Position Status", 15, white_col, 15 * font_h, font_h, scr_width, scr_height, pos_frm_lbl_pos, false,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 	
 	//distance from ground controller
-	font_h = 25.0f;
+	font_h = 0.03125f * scr_height; 
 	float dist_lbl_pos[2] = { pos_frm_lbl_pos[0] - 2*font_h , pos_frm_lbl_pos[1] - 2* font_h };
 	float dist_val_pos[2] = { dist_lbl_pos[0] + 4* font_h, dist_lbl_pos[1] };
 	float green_col[4] = { 0.0f, 1.0f, 0.0f, 1.0f };
@@ -263,8 +263,8 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 	//video frame
 	//posFrame = new Frame(width / 4.8f, height * 0.6f, scr_width, scr_height, pos_frame_pos, gray_col);
 
-	float vid_pos[2] = { pos_frame_pos[0] + width / 9.6f + 220.0f, pos_frame_pos[1] };
-	vid_frame = new VideoFrame(425.0f, 325.0f, scr_width, scr_height, vid_pos, 1, true, "Img/NO_VID.bmp");
+	float vid_pos[2] = { pos_frame_pos[0] + width / 9.6f + 0.1375f*scr_width, pos_frame_pos[1] };
+	vid_frame = new VideoFrame(0.53125f*scr_height, 0.203125f*scr_width, scr_width, scr_height, vid_pos, 1, true, "Img/NO_VID.bmp");
 	//TBD - change video source to 1 - read from external usb video capture device
 
 	//attitude data
