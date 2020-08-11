@@ -268,63 +268,63 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 	//TBD - change video source to 1 - read from external usb video capture device
 
 	//attitude data
-	float att_pos[2] = { vid_pos[0] + 510.0f, vid_pos[1] };
-	at_ind = new AttitudeInd(300.0f, scr_width, scr_height, att_pos);
+	float att_pos[2] = { vid_pos[0] + 0.31875f * scr_width , vid_pos[1] };
+	at_ind = new AttitudeInd(0.1875f * scr_width, scr_width, scr_height, att_pos); 
 
 	//velocity up data
 	font_h = 25.0f;
-	float vel_up_lbl_pos[2] = { att_pos[0] - 220.0f, att_pos[1] + 120.0f };
+	float vel_up_lbl_pos[2] = { att_pos[0] - 0.1375f * scr_width, att_pos[1] + 0.15f * scr_height };
 	velUpLbl = new Label(10, "VelUp[m/s]", 10, green_col, 4 * font_h, font_h, scr_width, scr_height, vel_up_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float vel_up_val_pos[2] = { vel_up_lbl_pos[0], vel_up_lbl_pos[1] - 35.0f };
+	float vel_up_val_pos[2] = { vel_up_lbl_pos[0], vel_up_lbl_pos[1] - 0.04375f * scr_height };
 	velUpVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, vel_up_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
 	//velocity left data
-	float vel_left_lbl_pos[2] = { vel_up_val_pos[0], vel_up_val_pos[1] - 35.0f };
+	float vel_left_lbl_pos[2] = { vel_up_val_pos[0], vel_up_val_pos[1] - 0.04375f * scr_height };
 	velLeftLbl = new Label(12, "VelLeft[m/s]", 12, green_col, 4 * font_h, font_h, scr_width, scr_height, vel_left_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float vel_left_val_pos[2] = { vel_left_lbl_pos[0], vel_left_lbl_pos[1] - 35.0f };
+	float vel_left_val_pos[2] = { vel_left_lbl_pos[0], vel_left_lbl_pos[1] - 0.04375f * scr_height };
 	velLeftVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, vel_left_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
 	//velocity forward data
-	float vel_fwd_lbl_pos[2] = { vel_left_val_pos[0], vel_left_val_pos[1] - 35.0f };
+	float vel_fwd_lbl_pos[2] = { vel_left_val_pos[0], vel_left_val_pos[1] - 0.04375f * scr_height };
 	velFwdLbl = new Label(12, "VelFwd[m/s]", 12, green_col, 4 * font_h, font_h, scr_width, scr_height, vel_fwd_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float vel_fwd_val_pos[2] = { vel_fwd_lbl_pos[0], vel_fwd_lbl_pos[1] - 35.0f };
+	float vel_fwd_val_pos[2] = { vel_fwd_lbl_pos[0], vel_fwd_lbl_pos[1] - 0.04375f * scr_height };
 	velFwdVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, vel_fwd_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
 	//heading data
-	float head_lbl_pos[2] = { att_pos[0] - 60.0f, att_pos[1] + 170.0f };
+	float head_lbl_pos[2] = { att_pos[0] - 0.0375f * scr_width, att_pos[1] + 0.2125f * scr_height };
 	headingLbl = new Label(12, "Heading[deg]", 12, green_col, 4 * font_h, font_h, scr_width, scr_height, head_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float head_val_pos[2] = { head_lbl_pos[0] + 120.0f, head_lbl_pos[1]};
+	float head_val_pos[2] = { head_lbl_pos[0] + 0.075f * scr_width, head_lbl_pos[1]};
 	headingVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, head_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
 	//Altitude data
-	float alt_lbl_pos[2] = { att_pos[0] - 60.0f, att_pos[1] - 170.0f };
+	float alt_lbl_pos[2] = { att_pos[0] - 0.0375f * scr_width, att_pos[1] - 0.2125f * scr_height };
 	altLbl = new Label(6, "Alt[m]", 6, green_col, 4 * font_h, font_h, scr_width, scr_height, alt_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float alt_val_pos[2] = { alt_lbl_pos[0] + 120.0f, alt_lbl_pos[1] };
+	float alt_val_pos[2] = { alt_lbl_pos[0] + 0.075f * scr_width, alt_lbl_pos[1] };
 	altVal = new Label(7, " 0000.0", 7, black_col, 4 * font_h, font_h, scr_width, scr_height, alt_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
 	//pitch data
-	float pitch_lbl_pos[2] = { att_pos[0] + 220.0f, att_pos[1] + 120.0f };
+	float pitch_lbl_pos[2] = { att_pos[0] + 0.1375f * scr_width, att_pos[1] + 0.15f * scr_height };
 	pitchLbl = new Label(10, "Pitch[deg]", 10, green_col, 4 * font_h, font_h, scr_width, scr_height, pitch_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float pitch_val_pos[2] = { pitch_lbl_pos[0], pitch_lbl_pos[1] - 35.0f };
+	float pitch_val_pos[2] = { pitch_lbl_pos[0], pitch_lbl_pos[1] - 0.04375f * scr_height };
 	pitchVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, pitch_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
 	//roll data
-	float roll_lbl_pos[2] = { pitch_val_pos[0], pitch_val_pos[1] - 35.0f };
+	float roll_lbl_pos[2] = { pitch_val_pos[0], pitch_val_pos[1] - 0.04375f * scr_width };
 	rollLbl = new Label(9, "Roll[deg]", 9, green_col, 4 * font_h, font_h, scr_width, scr_height, roll_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float roll_val_pos[2] = { roll_lbl_pos[0], roll_lbl_pos[1] - 35.0f };
+	float roll_val_pos[2] = { roll_lbl_pos[0], roll_lbl_pos[1] - 0.04375f * scr_width };
 	rollVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, roll_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
