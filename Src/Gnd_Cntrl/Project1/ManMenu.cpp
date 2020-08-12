@@ -429,11 +429,11 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 	float scr_pos[2] = { 0.4375f * scr_width, -0.3625f * scr_height };
 	float light_gray_col[4] = { 0.827f, 0.827f, 0.827f, 1.0f };
 	float dark_gray_col[4] = { 0.184f, 0.310f, 0.310f, 1.0f };
-	th_scrl = new Scroller(scr_pos, 40.0f, 125.0f, scr_width, scr_height, light_gray_col,
+	th_scrl = new Scroller(scr_pos, 0.025f * scr_width, 0.15625f * scr_height, scr_width, scr_height, light_gray_col,
 		dark_gray_col, 0);
 	th_scrl->setValue(60.0f);
 	//throttle label
-	float th_lbl_pos[2] = { 700.0f, -200.0f };
+	float th_lbl_pos[2] = { 0.4375f * scr_width, -0.25f * scr_height };
 	th_lbl = new Label(8, "Throttle", 8, green_col, 8 * font_h, font_h, scr_width, scr_height, th_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
