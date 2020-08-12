@@ -328,105 +328,105 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 	rollVal = new Label(6, " 000.0", 6, black_col, 4 * font_h, font_h, scr_width, scr_height, roll_val_pos, true,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
-	//Engine data information objects
+	//Engine data information objects - TODO continue from here resolution fix
 	//Engine data frame
-	float eng_frame_pos[2] = { 660.0f, 0.0f };
-	engFrame = new Frame(250.0f, 350.0f, scr_width, scr_height, eng_frame_pos, gray_col);
-	//Engine frma title label
-	float eng_title_pos[2] = { eng_frame_pos[0], eng_frame_pos[1] + 150.0f };
-	font_h = 30.0f;
+	float eng_frame_pos[2] = { 0.4125 * scr_width, 0.0f };
+	engFrame = new Frame(0.15625 * scr_width, 0.4375 * scr_height, scr_width, scr_height, eng_frame_pos, gray_col);
+	//Engine frame title label
+	float eng_title_pos[2] = { eng_frame_pos[0], eng_frame_pos[1] + 0.1875 * scr_height };
+	font_h = 0.0375 * scr_height;
 	engTitle = new Label(13, "Engine Status", 13, white_col, 4 * font_h, font_h, scr_width, scr_height, eng_title_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 	//engine 1 data
-	font_h = 25.0f;
-	float eng1_lbl_pos[2] = { eng_title_pos[0], eng_title_pos[1] - 35.0f };
+	font_h = 0.03125 * scr_height;
+	float eng1_lbl_pos[2] = { eng_title_pos[0], eng_title_pos[1] - 0.04375 * scr_height };
 	eng_1_lbl = new Label(8, "Eng1 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng1_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng1_val_pos[2] = { eng1_lbl_pos[0], eng1_lbl_pos[1] - 35.0f };
-	eng_1_val = new PerInd(200.0f, 20.0f, scr_width, scr_height, eng1_val_pos, green_col, 10.0f);
+	float eng1_val_pos[2] = { eng1_lbl_pos[0], eng1_lbl_pos[1] - 0.04375 * scr_height };
+	eng_1_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng1_val_pos, green_col, 10.0f);
 	//engine 2 data
-	float eng2_lbl_pos[2] = { eng1_val_pos[0], eng1_val_pos[1] - 35.0f };
+	float eng2_lbl_pos[2] = { eng1_val_pos[0], eng1_val_pos[1] - 0.04375 * scr_height };
 	eng_2_lbl = new Label(8, "Eng2 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng2_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng2_val_pos[2] = { eng2_lbl_pos[0], eng2_lbl_pos[1] - 35.0f };
-	eng_2_val = new PerInd(200.0f, 20.0f, scr_width, scr_height, eng2_val_pos, green_col, 10.0f);
+	float eng2_val_pos[2] = { eng2_lbl_pos[0], eng2_lbl_pos[1] - 0.04375 * scr_height };
+	eng_2_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng2_val_pos, green_col, 10.0f);
 	//engine 3 data
-	float eng3_lbl_pos[2] = { eng2_val_pos[0], eng2_val_pos[1] - 35.0f };
+	float eng3_lbl_pos[2] = { eng2_val_pos[0], eng2_val_pos[1] - 0.04375 * scr_height };
 	eng_3_lbl = new Label(8, "Eng3 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng3_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng3_val_pos[2] = { eng3_lbl_pos[0], eng3_lbl_pos[1] - 35.0f };
-	eng_3_val = new PerInd(200.0f, 20.0f, scr_width, scr_height, eng3_val_pos, green_col, 10.0f);
+	float eng3_val_pos[2] = { eng3_lbl_pos[0], eng3_lbl_pos[1] - 0.04375 * scr_height };
+	eng_3_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng3_val_pos, green_col, 10.0f);
 	//engine 4 data
-	float eng4_lbl_pos[2] = { eng3_val_pos[0], eng3_val_pos[1] - 35.0f };
+	float eng4_lbl_pos[2] = { eng3_val_pos[0], eng3_val_pos[1] - 0.04375 * scr_height };
 	eng_4_lbl = new Label(8, "Eng4 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng4_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng4_val_pos[2] = { eng4_lbl_pos[0], eng4_lbl_pos[1] - 35.0f };
-	eng_4_val = new PerInd(200.0f, 20.0f, scr_width, scr_height, eng4_val_pos, green_col, 10.0f);
+	float eng4_val_pos[2] = { eng4_lbl_pos[0], eng4_lbl_pos[1] - 0.04375 * scr_height };
+	eng_4_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng4_val_pos, green_col, 10.0f);
 
 	//draw buttons
 	//go forward button
-	float go_fwd_pos[2] = { -630.0f, -250.0f }; 
+	float go_fwd_pos[2] = { -0.39375f * scr_width, -0.3125f * scr_height };
 	float blue_col[4] = { 0.0f, 0.0f, 1.0f, 1.0f };
-	go_fwd_butt = new Button("FWD", 3, white_col, 80.0f, 60.0f, scr_width, scr_height, go_fwd_pos,
+	go_fwd_butt = new Button("FWD", 3, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, go_fwd_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//go back button
-	float go_back_pos[2] = { go_fwd_pos[0], go_fwd_pos[1] - 70.0f };
-	go_back_butt = new Button("BCK", 3, white_col, 80.0f, 60.0f, scr_width, scr_height, go_back_pos,
+	float go_back_pos[2] = { go_fwd_pos[0], go_fwd_pos[1] - 0.0875f * scr_height };
+	go_back_butt = new Button("BCK", 3, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, go_back_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//turn left button
-	float turn_left_pos[2] = { go_fwd_pos[0] - 90.0f, go_fwd_pos[1] };
-	turn_left_butt = new Button("TL", 2, white_col, 80.0f, 60.0f, scr_width, scr_height, turn_left_pos,
+	float turn_left_pos[2] = { go_fwd_pos[0] - 0.05625f * scr_width, go_fwd_pos[1] };
+	turn_left_butt = new Button("TL", 2, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, turn_left_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//turn right button
-	float turn_right_pos[2] = { go_fwd_pos[0] + 90.0f, go_fwd_pos[1] };
-	turn_right_butt = new Button("TR", 2, white_col, 80.0f, 60.0f, scr_width, scr_height, turn_right_pos,
+	float turn_right_pos[2] = { go_fwd_pos[0] + 0.05625f * scr_width, go_fwd_pos[1] };
+	turn_right_butt = new Button("TR", 2, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, turn_right_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//go left button
-	float go_left_pos[2] = { go_back_pos[0] - 90.0f, go_back_pos[1] };
-	go_left_butt = new Button("LFT", 3, white_col, 80.0f, 60.0f, scr_width, scr_height, go_left_pos,
+	float go_left_pos[2] = { go_back_pos[0] - 0.05625f * scr_width, go_back_pos[1] };
+	go_left_butt = new Button("LFT", 3, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, go_left_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//go right button
-	float go_right_pos[2] = { go_back_pos[0] + 90.0f, go_back_pos[1] };
-	go_right_butt = new Button("RHT", 3, white_col, 80.0f, 60.0f, scr_width, scr_height, go_right_pos,
+	float go_right_pos[2] = { go_back_pos[0] + 0.05625f * scr_width, go_back_pos[1] };
+	go_right_butt = new Button("RHT", 3, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, go_right_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//go up button
-	float go_up_pos[2] = { 570.0f, -250.0f };
-	go_up_butt = new Button("UP", 2, white_col, 80.0f, 60.0f, scr_width, scr_height, go_up_pos,
+	float go_up_pos[2] = { 0.35625f * scr_width, -0.3125f * scr_height };
+	go_up_butt = new Button("UP", 2, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, go_up_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//go down button
-	float go_down_pos[2] = { go_up_pos[0], go_up_pos[1] - 70.0f };
-	go_down_butt = new Button("DWN", 3, white_col, 80.0f, 60.0f, scr_width, scr_height, go_down_pos,
+	float go_down_pos[2] = { go_up_pos[0], go_up_pos[1] - 0.0875f * scr_height };
+	go_down_butt = new Button("DWN", 3, white_col, 0.05f * scr_width, 0.075f * scr_height, scr_width, scr_height, go_down_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//get position button
-	float get_pos_butt_pos[2] = { 0.0f, -320.0f };
-	get_pos_butt = new Button("Get Pos", 7, white_col, 180.0f, 60.0f, scr_width, scr_height, get_pos_butt_pos,
+	float get_pos_butt_pos[2] = { 0.0f, -0.4f * scr_height };
+	get_pos_butt = new Button("Get Pos", 7, white_col, 0.1125f * scr_width, 0.075f * scr_height, scr_width, scr_height, get_pos_butt_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//find runway button
-	float find_run_pos[2] = { get_pos_butt_pos[0] + 190.0f, get_pos_butt_pos[1] };
-	find_run_butt = new Button("Find runway", 11, white_col, 180.0f, 60.0f, scr_width, scr_height, find_run_pos,
+	float find_run_pos[2] = { get_pos_butt_pos[0] + 0.11875f * scr_width, get_pos_butt_pos[1] };
+	find_run_butt = new Button("Find runway", 11, white_col, 0.1125f * scr_width, 0.075f * scr_height, scr_width, scr_height, find_run_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//on off button
-	float on_off_pos[2] = { find_run_pos[0] + 190.0f, find_run_pos[1] };
-	on_off_butt = new Button("On/Off", 6, white_col, 180.0f, 60.0f, scr_width, scr_height, on_off_pos,
+	float on_off_pos[2] = { find_run_pos[0] + 0.11875f * scr_width, find_run_pos[1] };
+	on_off_butt = new Button("On/Off", 6, white_col, 0.1125f * scr_width, 0.075f * scr_height, scr_width, scr_height, on_off_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	//vid on off button
-	float vid_on_pos[2] = { get_pos_butt_pos[0] - 190.0f, get_pos_butt_pos[1] };
-	vid_on_butt = new Button("Vid on/off", 10, white_col, 180.0f, 60.0f, scr_width, scr_height, vid_on_pos,
+	float vid_on_pos[2] = { get_pos_butt_pos[0] - 0.11875f * scr_width, get_pos_butt_pos[1] };
+	vid_on_butt = new Button("Vid on/off", 10, white_col, 0.1125f * scr_width, 0.075f * scr_height, scr_width, scr_height, vid_on_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 	
 	//comm on off button
-	float comm_on_pos[2] = { vid_on_pos[0] , vid_on_pos[1] + 70.0f };
-	comm_on_off_butt = new Button("Comm on/off", 11, white_col, 180.0f, 60.0f, scr_width, scr_height, comm_on_pos,
+	float comm_on_pos[2] = { vid_on_pos[0], vid_on_pos[1] + 0.0875f * scr_height };
+	comm_on_off_butt = new Button("Comm on/off", 11, white_col, 0.1125f * scr_width, 0.075f * scr_height, scr_width, scr_height, comm_on_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 
 	//auto land button
-	float auto_land_pos[2] = { vid_on_pos[0] - 190.0f, vid_on_pos[1] };
-	auto_land_butt = new Button("Auto Land", 9, white_col, 180.0f, 60.0f, scr_width, scr_height, auto_land_pos,
+	float auto_land_pos[2] = { vid_on_pos[0] - 0.11875f * scr_width, vid_on_pos[1] };
+	auto_land_butt = new Button("Auto Land", 9, white_col, 0.1125f * scr_width, 0.075f * scr_height, scr_width, scr_height, auto_land_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 
 	//draw throttle scroller and label
 	//scroller
-	float scr_pos[2] = { 700.0f, -290.0f };
+	float scr_pos[2] = { 0.4375f * scr_width, -0.3625f * scr_height };
 	float light_gray_col[4] = { 0.827f, 0.827f, 0.827f, 1.0f };
 	float dark_gray_col[4] = { 0.184f, 0.310f, 0.310f, 1.0f };
 	th_scrl = new Scroller(scr_pos, 40.0f, 125.0f, scr_width, scr_height, light_gray_col,
