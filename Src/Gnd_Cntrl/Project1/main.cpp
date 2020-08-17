@@ -27,18 +27,17 @@
 // 2. Limit GUI frame rate
 // 3. Add special functions - This to be done after the quad is implemented...
 
-//debug - replace WinMain with "int main()"
-/*int _stdcall WinMain(struct HINSTANCE__ *hInstance,
+int _stdcall WinMain(struct HINSTANCE__ *hInstance,
 struct HINSTANCE__ *hPrevInstance,
 	char               *lpszCmdLine,
-	int                 nCmdShow)*/
-int main()
+	int                 nCmdShow)
 {
 
 	//Get screen resolution
 	SetProcessDPIAware();
 	int scr_width = (int)(WIDTH_RATIO * GetSystemMetrics(SM_CXSCREEN));
 	int  scr_height = (int)(HEIGHT_RATIO * GetSystemMetrics(SM_CYSCREEN));
+	// TODO - handle aspect ratios other than 16:9
 
 	std::cout << scr_width << std::endl;
 	std::cout << scr_height << std::endl;
@@ -52,7 +51,7 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	//glfwGetPrimaryMonitor() - Check how to fix windows security from blocking full screen - TODO
+	//glfwGetPrimaryMonitor() - Fix windows security from blocking full screen - TODO
 
 	//create new glfw window
 	GLFWwindow* window = glfwCreateWindow(scr_width, scr_height, "Quad Controller", NULL, NULL);
@@ -106,7 +105,7 @@ int main()
 
 	AutoMenu auto_menu((float)scr_width, (float)scr_height); //init auto menu
 	ManMenu man_menu((float)scr_width, (float)scr_height); //init manual menu
-	man_menu.setVidOnOff(false); //TODO - Update to read video input from external camera
+	man_menu.setVidOnOff(true);
 	AboutMenu about_menu((float)scr_width, (float)scr_height); //init about menu
 	about_menu.setDev("Anton Kypiatkov", 15);
 	about_menu.setSoftwareVersion("V1.1", 4);
@@ -192,12 +191,17 @@ int main()
 
 				//vid_on_off status
 				vid_on_off = man_menu.getVidOnOffButtonSts();
+				if (vid_on_off)
+				{
+					man_menu.setVidOnOff(true);
+				}
+				else man_menu.setVidOnOff(false);
 
 			}
 
 			if (selected_menu == 2)  //handle the auto screen
 			{
-				//handle auto menu - TBC
+				//TODO - handle auto menu
 			}
 
 		}
@@ -233,7 +237,7 @@ int main()
 
 		//Update status_bar and manual_screen
 		stsBr.setVals(batt_sts, 0, (int)alt, comm_sts, fail_sts); 
-		//TBC - not clear what should be described in status field for the status bar...???
+		//TODO - not clear what should be described in status field for the status bar...???
 		man_menu.setInd(vel_up, vel_left, vel_fwd, heading, alt, pitch, roll, eng1_sts, eng2_sts,
 			eng3_sts, eng4_sts);
 

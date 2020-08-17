@@ -265,14 +265,13 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 
 	float vid_pos[2] = { pos_frame_pos[0] + width / 9.6f + 0.1375f*scr_width, pos_frame_pos[1] };
 	vid_frame = new VideoFrame(0.53125f*scr_height, 0.203125f*scr_width, scr_width, scr_height, vid_pos, 1, true, "Img/NO_VID.bmp");
-	//TBD - change video source to 1 - read from external usb video capture device
 
 	//attitude data
 	float att_pos[2] = { vid_pos[0] + 0.31875f * scr_width , vid_pos[1] };
 	at_ind = new AttitudeInd(0.1875f * scr_width, scr_width, scr_height, att_pos); 
 
 	//velocity up data
-	font_h = 25.0f;
+	font_h = 0.03125f * scr_height;
 	float vel_up_lbl_pos[2] = { att_pos[0] - 0.1375f * scr_width, att_pos[1] + 0.15f * scr_height };
 	velUpLbl = new Label(10, "VelUp[m/s]", 10, green_col, 4 * font_h, font_h, scr_width, scr_height, vel_up_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);

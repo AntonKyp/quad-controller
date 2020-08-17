@@ -1,12 +1,51 @@
-﻿Build started 4/15/2020 1:04:48 PM.
-     1>Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" on node 2 (Build target(s)).
+﻿Build started 8/17/2020 2:55:03 PM.
+     1>Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt LoadScr.cpp ManMenu.cpp SerialComm.cpp main.cpp
-         main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AboutMenu.cpp AttitudeInd.cpp AutoMenu.cpp Button.cpp ExitMenu.cpp Frame.cpp glfw_callback_func.cpp HorizontalScroller.cpp Label.cpp LoadScr.cpp main.cpp ManMenu.cpp PerInd.cpp Scroller.cpp SerialComm.cpp SetupMenu.cpp Shader.cpp StatusBar.cpp stb_image.cpp ToolBar.cpp VideoFrame.cpp
+         VideoFrame.cpp
+         ToolBar.cpp
+         stb_image.cpp
+         StatusBar.cpp
+         Shader.cpp
+         SetupMenu.cpp
          SerialComm.cpp
+         Scroller.cpp
+         PerInd.cpp
          ManMenu.cpp
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(232): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(332): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(333): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(335): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(336): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(340): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(341): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(344): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(345): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(347): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(350): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(351): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(353): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(356): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(357): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(359): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(362): warning C4244: 'initializing' : conversion from 'double' to 'float', possible loss of data
+     1>c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\manmenu.cpp(363): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         main.cpp
          LoadScr.cpp
+         Label.cpp
+         HorizontalScroller.cpp
+         glfw_callback_func.cpp
+         Frame.cpp
+         ExitMenu.cpp
+         Button.cpp
+         AutoMenu.cpp
+         AttitudeInd.cpp
          Generating Code...
+         Compiling...
+         AboutMenu.cpp
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt glad.c
+         glad.c
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Debug\Project1.exe" /INCREMENTAL /NOLOGO opengl32.lib glfw3.lib opencv_calib3d340.lib opencv_core340.lib opencv_features2d340.lib opencv_flann340.lib opencv_highgui340.lib opencv_imgcodecs340.lib opencv_imgproc340.lib opencv_ml340.lib opencv_objdetect340.lib opencv_photo340.lib opencv_shape340.lib opencv_stitching340.lib opencv_superres340.lib opencv_video340.lib opencv_videoio340.lib opencv_videostab340.lib opencv_calib3d340d.lib opencv_core340d.lib opencv_features2d340d.lib opencv_flann340d.lib opencv_highgui340d.lib opencv_imgcodecs340d.lib opencv_imgproc340d.lib opencv_ml340d.lib opencv_objdetect340d.lib opencv_photo340d.lib opencv_shape340d.lib opencv_stitching340d.lib opencv_superres340d.lib opencv_video340d.lib opencv_videoio340d.lib opencv_videostab340d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Debug\Project1.lib" /MACHINE:X86 Debug\AboutMenu.obj
          Debug\AttitudeInd.obj
@@ -30,11 +69,9 @@
          Debug\stb_image.obj
          Debug\ToolBar.obj
          Debug\VideoFrame.obj
-         LINK : C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Debug\Project1.exe not found or not built by the last incremental link; performing full link
-     1>AboutMenu.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
          Project1.vcxproj -> C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Debug\Project1.exe
-     1>Done Building Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:12.91
+Time Elapsed 00:00:19.68
