@@ -1,7 +1,7 @@
 //system libraries
 #include <iostream>
 #include <stdlib.h>
-#include "wtypes.h"
+#include <Windows.h>
 
 //openGL libraries
 #include <glad\glad.h>
@@ -23,28 +23,26 @@
 #include "SerialComm.h"
 
 //TODO - 	
-// 1. Handle more than one resolution (1920 x 1080) - mouse click position to not be affected by resolution (first)
+// 1. Handle more than one display resolution (1920 x 1080) - mouse click position to not be affected by resolution (first)
 // 2. Limit GUI frame rate
 // 3. Add special functions - This to be done after the quad is implemented...
 
-//debug - replace WinMain with "int main()"
-/*int _stdcall WinMain(struct HINSTANCE__ *hInstance,
+int _stdcall WinMain(struct HINSTANCE__ *hInstance,
 struct HINSTANCE__ *hPrevInstance,
 	char               *lpszCmdLine,
-	int                 nCmdShow)*/
-int main()
+	int                 nCmdShow)
 {
 
-	//read window size
-	RECT desktop;
-	const HWND hDesktop = GetDesktopWindow();
-	GetWindowRect(hDesktop, &desktop);
-	int h_size = desktop.right;
-	int w_size = desktop.bottom;
+	//Get screen resolution
+	SetProcessDPIAware();
+	int scr_width = (int)(WIDTH_RATIO * GetSystemMetrics(SM_CXSCREEN));
+	int  scr_height = (int)(HEIGHT_RATIO * GetSystemMetrics(SM_CYSCREEN));
+	// TODO - handle aspect ratios other than 16:9
 
-	std::cout << "desktop size is: " << h_size << " and: " << w_size << std::endl;
-	h_size = SCR_HEIGHT;
-	w_size = SCR_WIDTH;
+	std::cout << scr_width << std::endl;
+	std::cout << scr_height << std::endl;
+
+	set_screen_size(scr_height, scr_width);
 
 	//init glfw
 	glfwInit();
@@ -53,10 +51,10 @@ int main()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	//glfwGetPrimaryMonitor() - Check how to fix windows security from blocking full screen - TODO
+	//glfwGetPrimaryMonitor() - Fix windows security from blocking full screen - TODO
 
 	//create new glfw window
-	GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Quad Controller", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(scr_width, scr_height, "Quad Controller", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create a new window " << std::endl;
@@ -89,29 +87,29 @@ int main()
 		return -1;
 	}
 	//Init loading screen
-	LoadScr load_menu((float)SCR_WIDTH, float(SCR_HEIGHT));
+	LoadScr load_menu((float)scr_width, (float)scr_height);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	load_menu.drawLoad();
 	glfwSwapBuffers(window);
 
 	//Init window items
-	StatusBar stsBr(0, 0, 0, 0, (float)SCR_WIDTH, (float)SCR_HEIGHT); //init status bar
-	ToolBar toolBar((float)SCR_WIDTH, (float)SCR_HEIGHT); //init toolbar
+	StatusBar stsBr(0, 0, 0, 0, (float)scr_width, (float)scr_height); //init status bar
+	ToolBar toolBar((float)scr_width, (float)scr_height); //init toolbar
 	toolBar.setButtDown(1);
-	SetupMenu setup_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); 	//init setup menu
+	SetupMenu setup_menu((float)scr_width, (float)scr_height); 	//init setup menu
 	setup_menu.set_values(setup_key_vals.up_key, setup_key_vals.down_key, setup_key_vals.left_key, setup_key_vals.right_key,
 		setup_key_vals.turn_left_key, setup_key_vals.turn_right_key, setup_key_vals.fwd_key, setup_key_vals.back_key,
 		setup_key_vals.key_sens, setup_key_vals.throt_up_key, setup_key_vals.throt_down_key, setup_key_vals.on_off_key,
 		setup_key_vals.address, setup_key_vals.channel, setup_key_vals.power, setup_key_vals.comm_port, setup_key_vals.log); //set setupMenu values
 
-	AutoMenu auto_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init auto menu
-	ManMenu man_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init manual menu
-	man_menu.setVidOnOff(false); //TODO - Update to read video input from external camera
-	AboutMenu about_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); //init about menu
-	about_menu.setDev("Anton Kipiatkov", 15);
-	about_menu.setSoftwareVersion("V1.0", 4);
-	ExitMenu exit_menu((float)SCR_WIDTH, (float)SCR_HEIGHT); 	//init exit menu
+	AutoMenu auto_menu((float)scr_width, (float)scr_height); //init auto menu
+	ManMenu man_menu((float)scr_width, (float)scr_height); //init manual menu
+	man_menu.setVidOnOff(true);
+	AboutMenu about_menu((float)scr_width, (float)scr_height); //init about menu
+	about_menu.setDev("Anton Kypiatkov", 15);
+	about_menu.setSoftwareVersion("V1.1", 4);
+	ExitMenu exit_menu((float)scr_width, (float)scr_height); 	//init exit menu
 
 	//init serial communication
 	SerialComm serial_comm(setup_menu.get_comm_port(), setup_menu.get_channel(),
@@ -193,12 +191,17 @@ int main()
 
 				//vid_on_off status
 				vid_on_off = man_menu.getVidOnOffButtonSts();
+				if (vid_on_off)
+				{
+					man_menu.setVidOnOff(true);
+				}
+				else man_menu.setVidOnOff(false);
 
 			}
 
 			if (selected_menu == 2)  //handle the auto screen
 			{
-				//handle auto menu - TBC
+				//TODO - handle auto menu
 			}
 
 		}
@@ -234,7 +237,7 @@ int main()
 
 		//Update status_bar and manual_screen
 		stsBr.setVals(batt_sts, 0, (int)alt, comm_sts, fail_sts); 
-		//TBC - not clear what should be described in status field for the status bar...???
+		//TODO - not clear what should be described in status field for the status bar...???
 		man_menu.setInd(vel_up, vel_left, vel_fwd, heading, alt, pitch, roll, eng1_sts, eng2_sts,
 			eng3_sts, eng4_sts);
 

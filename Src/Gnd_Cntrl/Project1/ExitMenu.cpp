@@ -28,19 +28,19 @@ ExitMenu::ExitMenu(float scr_w, float scr_h)
 	in_frame = new Frame(0.95f*width, 0.95f*height, scr_width, scr_height, pos, gray_col);
 
 	//define title label
-	float font_h = 70.0f;
+	float font_h = 0.0875f * scr_height;
 	float title_pos[2] = { pos[0], pos[1] + height*0.5f - font_h*0.5f };
 	titleLbl = new Label(5, "Exit?", 5, white_col, 5 * font_h, font_h, scr_width, scr_height, title_pos, false,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 
 	//define yes button
-	float yes_pos[2] = { pos[0] - 150.f, pos[1] };
-	yes_butt = new Button("YES", 3, white_col, 130.0f, 80.0f, scr_width, scr_height, yes_pos,
+	float yes_pos[2] = { pos[0] - 0.09375f * scr_width, pos[1] };
+	yes_butt = new Button("YES", 3, white_col, 0.08125f * scr_width, 0.1f * scr_height, scr_width, scr_height, yes_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 
 	//define no button
-	float no_pos[2] = { pos[0] + 150.f, pos[1] };
-	no_butt = new Button("NO", 2, white_col, 130.0f, 80.0f, scr_width, scr_height, no_pos,
+	float no_pos[2] = { pos[0] + 0.09375f * scr_width, pos[1] };
+	no_butt = new Button("NO", 2, white_col, 0.08125f * scr_width, 0.1f * scr_height, scr_width, scr_height, no_pos,
 		blue_col, "Img\\GL_FONT.bmp");
 
 }

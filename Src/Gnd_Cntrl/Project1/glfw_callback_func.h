@@ -10,11 +10,8 @@
 /*This header file defines the relevant callback functions for glfw*/
 #include <glfw3.h>
 
-
-//glfw window definitions
-//TODO - handle several screen resolutions
-const unsigned int SCR_WIDTH = 1600;
-const unsigned int SCR_HEIGHT = 800;
+#define WIDTH_RATIO 0.83333
+#define HEIGHT_RATIO 0.74076
 
 //struct for key control values
 typedef struct key_vals {
@@ -92,6 +89,11 @@ void handle_setup(SetupMenu &setup);
 and other control values for the application.
 */
 void get_controls(key_vals * cntrl);
+
+/*Function recieves the screen height and width and saves the screen size for the mouse control position.
+*/
+void set_screen_size(int _scr_h, int _scr_w);
+
 
 
 #endif

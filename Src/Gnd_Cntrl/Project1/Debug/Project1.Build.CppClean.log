@@ -1,6 +1,5 @@
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\vc120.pdb
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\vc120.idb
-c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\aboutmenu.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\attitudeind.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\automenu.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\button.obj
@@ -9,6 +8,7 @@ c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\frame.
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\glfw_callback_func.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\horizontalscroller.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\label.obj
+c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\loadscr.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\main.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\manmenu.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\perind.obj
@@ -20,8 +20,8 @@ c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\status
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\stb_image.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\toolbar.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\videoframe.obj
+c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\aboutmenu.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\glad.obj
-c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\project1\debug\loadmenu.obj
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\debug\project1.ilk
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\debug\project1.exe
 c:\anton\projects\quad build\quad-controller\src\gnd_cntrl\debug\project1.pdb

@@ -281,7 +281,7 @@ SetupMenu::SetupMenu(float scr_w, float scr_h)
 
 	//define title label
 	float white_col[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	float font_h = 70.0f;
+	float font_h = 0.0875f * scr_height;
 	float title_pos[2] = { setup_frame_pos[0], setup_frame_pos[1] + height*0.5f - font_h*0.5f };
 	titleLbl = new Label(10, "Setup Menu", 10, white_col, 10 * font_h, font_h, scr_width, scr_height, title_pos, false,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
@@ -292,7 +292,7 @@ SetupMenu::SetupMenu(float scr_w, float scr_h)
 	keyFrame1 = new Frame(0.25f*width, 0.85f*height, scr_width, scr_height, keyFrame1Pos, gray_col);
 
 	//keyFrame1 Title
-	font_h = 25.0f;
+	font_h = 0.03125f * scr_height;
 	float key1TitleLblPos[2] = {keyFrame1Pos[0], keyFrame1Pos[1] + 0.425f*height - font_h};
 	key1TitleLbl = new Label(14, "Keyboard Setup", 14, white_col, 14 * font_h, font_h, scr_width, scr_height, key1TitleLblPos,
 		false, white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
@@ -373,7 +373,7 @@ SetupMenu::SetupMenu(float scr_w, float scr_h)
 
 	//horizonal scroller for sensitivity control
 	float sensLblPos[2] = { keyFrame1Pos[0], fwdLblPos[1] - 4.0f * font_h };
-	float sensScrollPos[2] = { sensLblPos[0], sensLblPos[1] - 2 * font_h };
+	float sensScrollPos[2] = { sensLblPos[0], sensLblPos[1] - 2.0f * font_h };
 	float light_gray_col[4] = { 0.827f, 0.827f, 0.827f, 1.0f };
 	float dark_gray_col[4] = { 0.184f, 0.310f, 0.310f, 1.0f };
 
