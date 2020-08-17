@@ -229,7 +229,7 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 	posFrame = new Frame( width/5.5f, height * 0.6f, scr_width, scr_height, pos_frame_pos, gray_col);
 	//position frame label
 	float pos_frm_lbl_pos[4] = { pos_frame_pos[0], pos_frame_pos[1] + width / 4.5f /2.0f };
-	font_h = 0.0375 * scr_height;
+	font_h = 0.0375f * scr_height;
 	posFrameLbl = new Label(15, "Position Status", 15, white_col, 15 * font_h, font_h, scr_width, scr_height, pos_frm_lbl_pos, false,
 		white_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 	
@@ -329,38 +329,38 @@ ManMenu::ManMenu(float scr_w, float scr_h)
 
 	//Engine data information objects - TODO continue from here resolution fix
 	//Engine data frame
-	float eng_frame_pos[2] = { 0.4125 * scr_width, 0.0f };
-	engFrame = new Frame(0.15625 * scr_width, 0.4375 * scr_height, scr_width, scr_height, eng_frame_pos, gray_col);
+	float eng_frame_pos[2] = { 0.4125f * scr_width, 0.0f };
+	engFrame = new Frame(0.15625f * scr_width, 0.4375f * scr_height, scr_width, scr_height, eng_frame_pos, gray_col);
 	//Engine frame title label
-	float eng_title_pos[2] = { eng_frame_pos[0], eng_frame_pos[1] + 0.1875 * scr_height };
-	font_h = 0.0375 * scr_height;
+	float eng_title_pos[2] = { eng_frame_pos[0], eng_frame_pos[1] + 0.1875f * scr_height };
+	font_h = 0.0375f * scr_height;
 	engTitle = new Label(13, "Engine Status", 13, white_col, 4 * font_h, font_h, scr_width, scr_height, eng_title_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
 	//engine 1 data
-	font_h = 0.03125 * scr_height;
-	float eng1_lbl_pos[2] = { eng_title_pos[0], eng_title_pos[1] - 0.04375 * scr_height };
+	font_h = 0.03125f * scr_height;
+	float eng1_lbl_pos[2] = { eng_title_pos[0], eng_title_pos[1] - 0.04375f * scr_height };
 	eng_1_lbl = new Label(8, "Eng1 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng1_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng1_val_pos[2] = { eng1_lbl_pos[0], eng1_lbl_pos[1] - 0.04375 * scr_height };
-	eng_1_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng1_val_pos, green_col, 10.0f);
+	float eng1_val_pos[2] = { eng1_lbl_pos[0], eng1_lbl_pos[1] - 0.04375f * scr_height };
+	eng_1_val = new PerInd(0.125f * scr_width, 0.025f * scr_height, scr_width, scr_height, eng1_val_pos, green_col, 10.0f);
 	//engine 2 data
-	float eng2_lbl_pos[2] = { eng1_val_pos[0], eng1_val_pos[1] - 0.04375 * scr_height };
+	float eng2_lbl_pos[2] = { eng1_val_pos[0], eng1_val_pos[1] - 0.04375f * scr_height };
 	eng_2_lbl = new Label(8, "Eng2 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng2_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng2_val_pos[2] = { eng2_lbl_pos[0], eng2_lbl_pos[1] - 0.04375 * scr_height };
-	eng_2_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng2_val_pos, green_col, 10.0f);
+	float eng2_val_pos[2] = { eng2_lbl_pos[0], eng2_lbl_pos[1] - 0.04375f * scr_height };
+	eng_2_val = new PerInd(0.125f * scr_width, 0.025f * scr_height, scr_width, scr_height, eng2_val_pos, green_col, 10.0f);
 	//engine 3 data
-	float eng3_lbl_pos[2] = { eng2_val_pos[0], eng2_val_pos[1] - 0.04375 * scr_height };
+	float eng3_lbl_pos[2] = { eng2_val_pos[0], eng2_val_pos[1] - 0.04375f * scr_height };
 	eng_3_lbl = new Label(8, "Eng3 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng3_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng3_val_pos[2] = { eng3_lbl_pos[0], eng3_lbl_pos[1] - 0.04375 * scr_height };
-	eng_3_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng3_val_pos, green_col, 10.0f);
+	float eng3_val_pos[2] = { eng3_lbl_pos[0], eng3_lbl_pos[1] - 0.04375f * scr_height };
+	eng_3_val = new PerInd(0.125f * scr_width, 0.025f * scr_height, scr_width, scr_height, eng3_val_pos, green_col, 10.0f);
 	//engine 4 data
-	float eng4_lbl_pos[2] = { eng3_val_pos[0], eng3_val_pos[1] - 0.04375 * scr_height };
+	float eng4_lbl_pos[2] = { eng3_val_pos[0], eng3_val_pos[1] - 0.04375f * scr_height };
 	eng_4_lbl = new Label(8, "Eng4 RPM", 8, green_col, 4 * font_h, font_h, scr_width, scr_height, eng4_lbl_pos, false,
 		green_col, font_h, "Img\\GL_FONT.bmp", 1, 0);
-	float eng4_val_pos[2] = { eng4_lbl_pos[0], eng4_lbl_pos[1] - 0.04375 * scr_height };
-	eng_4_val = new PerInd(0.125f * scr_width, 0.025 * scr_height, scr_width, scr_height, eng4_val_pos, green_col, 10.0f);
+	float eng4_val_pos[2] = { eng4_lbl_pos[0], eng4_lbl_pos[1] - 0.04375f * scr_height };
+	eng_4_val = new PerInd(0.125f * scr_width, 0.025f * scr_height, scr_width, scr_height, eng4_val_pos, green_col, 10.0f);
 
 	//draw buttons
 	//go forward button

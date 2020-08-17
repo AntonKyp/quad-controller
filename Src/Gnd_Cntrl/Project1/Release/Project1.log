@@ -1,8 +1,8 @@
-﻿Build started 8/17/2020 6:20:32 PM.
+﻿Build started 8/17/2020 8:31:00 PM.
      1>Project "C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Project1\Project1.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ExitMenu.cpp
-         ExitMenu.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ManMenu.cpp
+         ManMenu.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Release\Project1.exe" /NOLOGO opengl32.lib glfw3.lib opencv_calib3d340.lib opencv_core340.lib opencv_features2d340.lib opencv_flann340.lib opencv_highgui340.lib opencv_imgcodecs340.lib opencv_imgproc340.lib opencv_ml340.lib opencv_objdetect340.lib opencv_photo340.lib opencv_shape340.lib opencv_stitching340.lib opencv_superres340.lib opencv_video340.lib opencv_videoio340.lib opencv_videostab340.lib opencv_calib3d340d.lib opencv_core340d.lib opencv_features2d340d.lib opencv_flann340d.lib opencv_highgui340d.lib opencv_imgcodecs340d.lib opencv_imgproc340d.lib opencv_ml340d.lib opencv_objdetect340d.lib opencv_photo340d.lib opencv_shape340d.lib opencv_stitching340d.lib opencv_superres340d.lib opencv_video340d.lib opencv_videoio340d.lib opencv_videostab340d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Release\Project1.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Anton\Projects\Quad Build\quad-controller\Src\Gnd_Cntrl\Release\Project1.lib" /MACHINE:X86 /SAFESEH Release\AboutMenu.obj
          Release\AttitudeInd.obj
@@ -34,4 +34,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.68
+Time Elapsed 00:00:05.41
